@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collections;
 import java.util.Map;
 
-public interface TAsyncProcessor {
+public interface TAsyncProcessor extends TSyncOrAsyncProcessor {
     /**
      * Implementations must call fb.responseReady() once processing is complete
      */

@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collections;
 import java.util.Map;
 
-public class TBaseAsyncProcessor<I> implements TAsyncProcessor, TProcessor {
+public class TBaseAsyncProcessor<I> implements TAsyncProcessor {
     protected final Logger LOGGER = LoggerFactory.getLogger(getClass().getName());
 
     final I iface;
@@ -85,8 +85,7 @@ public class TBaseAsyncProcessor<I> implements TAsyncProcessor, TProcessor {
         return true;
     }
 
-    @Override
-    public boolean process(TProtocol in, TProtocol out) throws TException {
-        return false;
+    public <T> T visit(Visitor<T> visitor) throws TException {
+        return visitor.visitAsync(this);
     }
 }

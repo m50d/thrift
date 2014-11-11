@@ -16,17 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.thrift;
 
-import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.protocol.*;
 
-/**
- * A processor is a generic object which operates upon an input stream and
- * writes to some output stream.
- *
- */
-public interface TProcessor extends TSyncOrAsyncProcessor {
-  public boolean process(TProtocol in, TProtocol out)
-    throws TException;
+import org.apache.thrift.server.AbstractNonblockingServer.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Collections;
+import java.util.Map;
+
+public interface TSyncOrAsyncProcessor {
+    public static interface Visitor<T> {
+        public T visitAsync(TAsyncProcessor processor);
+        public T visitSync(TProcessor processor);
+    }
+    
+    public <T> T visit(final Visitor<T> visitor) throws TException;
 }

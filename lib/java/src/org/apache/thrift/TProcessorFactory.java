@@ -37,7 +37,4 @@ public class TProcessorFactory {
     return processor_;
   }
 
-  public boolean isAsyncProcessor() {
-      return processor_ instanceof TAsyncProcessor;
-  }
 }
