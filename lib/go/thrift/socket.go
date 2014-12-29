@@ -100,7 +100,7 @@ func (p *TSocket) Open() error {
 	return nil
 }
 
-// Retreive the underlying net.Conn
+// Retrieve the underlying net.Conn
 func (p *TSocket) Conn() net.Conn {
 	return p.conn
 }
@@ -146,10 +146,6 @@ func (p *TSocket) Write(buf []byte) (int, error) {
 	}
 	p.pushDeadline(false, true)
 	return p.conn.Write(buf)
-}
-
-func (p *TSocket) Peek() bool {
-	return p.IsOpen()
 }
 
 func (p *TSocket) Flush() error {
